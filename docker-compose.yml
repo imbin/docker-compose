@@ -62,7 +62,7 @@ services:
   php71:
 #    build: 
 #     context: ./php7
-    image: my_php:7.1
+    image: php71:latest
     #使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
     ports:
       - "9071:9000"
