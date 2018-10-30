@@ -1,0 +1,5 @@
+
+#        if ($remote_addr ~* "^(.*)1$")
+#        {
+#            add_header Set-Cookie "_nhp=1; Domain=.dev.com; Path=/";
+#        }

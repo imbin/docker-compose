@@ -1,0 +1,31 @@
+#FROM php:5.6-fpm
+#FROM php:5.6.23-fpm
+#FROM index.tenxcloud.com/docker_library/php:5.4.45-fpm
+FROM  hub.c.163.com/library/php:5-fpm
+#FROM daocloud.io/library/php:5.4.45-fpm
+
+ADD debian.sources.list /etc/apt/sources.list
+
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+#        libpng12-dev \
+    && docker-php-ext-install iconv mcrypt bcmath mbstring \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install mysqli pdo_mysql
+
+RUN pecl install swoole \
+    && docker-php-ext-enable swoole
+
+#Install redis extension
+RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/2.2.8.tar.gz \
+    && tar zxvf /tmp/redis.tar.gz \
+    && rm -r /tmp/redis.tar.gz \
+    && mkdir -p /usr/src/php/ext \
+    && mv phpredis-2.2.8 /usr/src/php/ext/redis \
+    && cd /usr/src/php/ext/redis \
+    && docker-php-ext-install redis
+
+CMD ["php-fpm"]

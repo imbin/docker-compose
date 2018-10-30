@@ -1,0 +1,117 @@
+version: '3'
+
+services:
+  mysql:
+#    build: 
+#      context: ./mysql
+#    image: daocloud.io/library/mysql:5.7.20
+    image: my_mysql:latest
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+
+  redis:
+#    build: 
+#      context: ./redis
+    image: my_redis:latest
+    volumes:
+      - ./redis:/usr/local/redis
+    ports:
+      - "6379:6379"
+
+  php54:
+#    build: 
+#      context: ./php54
+#      network: host
+    image: php54:latest
+#  # 使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
+#  # 开放9000端口
+    ports:
+      - "9054:9000"
+#  # 此处实现文件夹代码目录映射
+    volumes:
+      - ../:/data
+      - ./php54/etc/php/php.ini:/usr/local/etc/php/php.ini
+      - ./php54/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
+    links:
+      - redis
+      - mysql
+    privileged: true
+
+
+  php56:
+    image: php56:latest
+#  # 使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
+#  # 开放9000端口
+    ports:
+      - "9056:9000"
+#  # 此处实现文件夹代码目录映射
+    volumes:
+      - ../:/data
+      - ./php56/etc/php/php.ini:/usr/local/etc/php/php.ini
+      - ./php56/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    links:
+      - redis
+      - mysql
+    privileged: true
+
+  php71:
+#    build: 
+#     context: ./php7
+    image: my_php:7.1
+    #使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
+    ports:
+      - "9071:9000"
+  # 此处实现文件夹代码目录映射
+    volumes:
+      - ../:/data
+      - ./php71/etc/php/php.ini:/usr/local/etc/php/php.ini
+      - ./php71/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./php71/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    links:
+      - redis
+      - mysql
+    privileged: true
+
+  php7:
+#    build: 
+#     context: ./php7
+    image: php7:latest
+    #使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
+    ports:
+      - "9007:9000"
+  # 此处实现文件夹代码目录映射
+    volumes:
+      - ../:/data
+      - ./php7/etc/php/php.ini:/usr/local/etc/php/php.ini
+      - ./php7/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./php7/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    links:
+      - redis
+      - mysql
+    privileged: true
+
+  nginx:
+#    build: 
+#      context: ./nginx
+    image: my_nginx:latest
+#    build: ./nginx
+  # 此处实现文件夹代码目录映射
+    volumes:
+      - ../:/data
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  # 链接其他docker容器实例
+    links:
+      - php54:php54
+      - php56:php56
+      - php7:php7
+      - php71:php71
+    privileged: true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081-8090:8081-8090"
