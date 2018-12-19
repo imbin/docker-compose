@@ -37,6 +37,7 @@ services:
       - ../:/data
       - ./php54/etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./php54/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./hosts:/etc/hosts
     links:
       - redis
       - mysql
@@ -54,12 +55,14 @@ services:
       - ../:/data
       - ./php56/etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./php56/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./hosts:/etc/hosts
     links:
       - redis
       - mysql
     privileged: true
-    extra_hosts:
-      - "affiliate.gearbest.lol:172.23.0.8"
+#    extra_hosts:
+#      - "affiliate.gearbest.lol:172.24.0.8"
+#      - "affapi.com.trunk.s1cg.egomsl.com:172.24.0.8"
 
   php71:
 #    build: 
@@ -74,12 +77,14 @@ services:
       - ./php71/etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./php71/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./php71/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./hosts:/etc/hosts
     links:
       - redis
       - mysql
     privileged: true
-    extra_hosts:
-      - "affiliate.gearbest.lol:172.23.0.8"
+#    extra_hosts:
+#      - "affiliate.gearbest.lol:172.24.0.8"
+#      - "affapi.com.trunk.s1cg.egomsl.com:172.24.0.8"
 
   php7:
 #    build: 
@@ -94,6 +99,7 @@ services:
       - ./php7/etc/php/php.ini:/usr/local/etc/php/php.ini
       - ./php7/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./php7/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./hosts:/etc/hosts
     links:
       - redis
       - mysql
