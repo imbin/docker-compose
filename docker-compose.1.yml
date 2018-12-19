@@ -58,8 +58,6 @@ services:
       - redis
       - mysql
     privileged: true
-    extra_hosts:
-      - "affiliate.gearbest.lol:172.23.0.8"
 
   php71:
 #    build: 
@@ -78,8 +76,6 @@ services:
       - redis
       - mysql
     privileged: true
-    extra_hosts:
-      - "affiliate.gearbest.lol:172.23.0.8"
 
   php7:
 #    build: 
@@ -115,6 +111,11 @@ services:
       - php7:php7
       - php71:php71
     privileged: true
+    dns_search:
+      - admin.affiliate.lol
+      - affiliate.gearbest.lol
+      - firstgrabber.lol
+      - affapi.com.trunk.s1cg.egomsl.com
     ports:
       - "80:80"
       - "443:443"

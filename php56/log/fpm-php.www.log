@@ -1,3 +1,0 @@
-[25-Jul-2018 17:05:58 Asia/Chongqing] PHP Fatal error:  Class 'Maatwebsite\Excel\ExcelServiceProvider' not found in /data/contract/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php on line 146
-[25-Jul-2018 17:45:24 Asia/Chongqing] PHP Parse error:  syntax error, unexpected ':', expecting ';' or '{' in /data/contract/vendor/doctrine/inflector/lib/Doctrine/Common/Inflector/Inflector.php on line 265
-[25-Jul-2018 17:47:19 Asia/Chongqing] PHP Parse error:  syntax error, unexpected ':', expecting ';' or '{' in /data/contract/vendor/doctrine/inflector/lib/Doctrine/Common/Inflector/Inflector.php on line 265

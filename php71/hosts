@@ -4,3 +4,14 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 
+
+172.20.0.8 www.dev.com
+
+172.20.0.8 api.dev.com
+172.20.0.8 api.test.com
+172.20.0.8 api.beta.com
+
+172.20.0.8 front.dev.com
+172.20.0.8 front.test.com
+172.20.0.8 front.beta.com
+172.20.0.8 affiliate.gearbest.lol

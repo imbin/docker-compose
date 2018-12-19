@@ -16,7 +16,7 @@ RUN apk add --no-cache --update freetype-dev \
         libjpeg-turbo-dev \
         libltdl \
         libmcrypt-dev \
-        libpng-dev \
+        libpng-dev git\
         shadow libmemcached-libs zlib zlib-dev libmemcached-dev cyrus-sasl-dev \
         autoconf build-base linux-headers libaio-dev openssl-dev php7-dev \
         && docker-php-ext-install iconv bcmath opcache \ 
@@ -35,5 +35,10 @@ RUN pecl channel-update pecl.php.net \
     && docker-php-ext-enable redis \
     && groupadd -g 1000 vboxsf \
     && usermod -a -G vboxsf www-data
+
+RUN git clone https://github.com/longxinH/xhprof.git /tmp/xhprof \
+    && mkdir -p /usr/src/php/ext \
+    && mv /tmp/xhprof/extension /usr/src/php/ext/xhprof \
+    && docker-php-ext-install xhprof
 
 CMD ["php-fpm"]
