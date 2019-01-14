@@ -11,12 +11,12 @@ RUN echo "http://mirrors.ustc.edu.cn/alpine/latest-stable/main" > /etc/apk/repos
         libltdl \
         libmcrypt-dev \
         libpng-dev \
-        shadow autoconf \
+        shadow autoconf libxml2-dev \
     && groupadd -g 1000 vboxsf \
     && usermod -a -G vboxsf www-data \
     && docker-php-ext-install iconv mcrypt bcmath mbstring \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd \
+    && docker-php-ext-install gd soap \
     && docker-php-ext-install mysqli pdo_mysql
 
 # RUN pecl channel-update pecl.php.net \
