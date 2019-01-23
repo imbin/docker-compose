@@ -4,6 +4,6 @@ fe00::0	ip6-localnet
 ff00::0	ip6-mcastprefix
 ff02::1	ip6-allnodes
 ff02::2	ip6-allrouters
-172.25.0.8	affiliate.gearbest.lol
-172.25.0.8	admin.affiliate.lol
-172.25.0.8	affapi.com.trunk.s1cg.egomsl.com
+172.18.0.8	affiliate.gearbest.lol
+172.18.0.8	admin.affiliate.lol
+172.18.0.8	affapi.com.trunk.s1cg.egomsl.com
