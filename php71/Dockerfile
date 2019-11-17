@@ -24,6 +24,8 @@ RUN apk add --no-cache --update freetype-dev \
     && docker-php-ext-install gd \ 
     && docker-php-ext-install mysqli pdo_mysql
 
+# docker-php-ext-install support extend: bcmath bz2 calendar ctype curl dba dom enchant exif fileinfo filter ftp gd gettext gmp hash iconv imap interbase intl json ldap mbstring mysqli oci8 odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix pspell readline recode reflection session shmop simplexml snmp soap sockets sodium spl standard sysvmsg sysvsem sysvshm tidy tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl zend_test zip
+
 RUN pecl channel-update pecl.php.net \
     && pecl install swoole \
     && docker-php-ext-enable swoole \
@@ -33,12 +35,10 @@ RUN pecl channel-update pecl.php.net \
     && docker-php-ext-enable memcached \
     && pecl install redis \
     && docker-php-ext-enable redis \
+    && pecl install mcrypt \
+    && docker-php-ext-enable mcrypt \
     && groupadd -g 1000 vboxsf \
     && usermod -a -G vboxsf www-data
 
-RUN git clone https://github.com/longxinH/xhprof.git /tmp/xhprof \
-    && mkdir -p /usr/src/php/ext \
-    && mv /tmp/xhprof/extension /usr/src/php/ext/xhprof \
-    && docker-php-ext-install xhprof
 
 CMD ["php-fpm"]

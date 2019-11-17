@@ -23,47 +23,6 @@ services:
     ports:
       - "6379:6379"
 
-  php54:
-#    build: 
-#      context: ./php54
-#      network: host
-    image: php54:latest
-#  # 使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
-#  # 开放9000端口
-    ports:
-      - "9054:9000"
-#  # 此处实现文件夹代码目录映射
-    volumes:
-      - ../:/data
-      - ./php54/etc/php/php.ini:/usr/local/etc/php/php.ini
-      - ./php54/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - ./hosts:/etc/hosts
-    links:
-      - redis
-      - mysql
-    privileged: true
-
-
-  php56:
-    image: php56:latest
-#  # 使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
-#  # 开放9000端口
-    ports:
-      - "9056:9000"
-#  # 此处实现文件夹代码目录映射
-    volumes:
-      - ../:/data
-      - ./php56/etc/php/php.ini:/usr/local/etc/php/php.ini
-      - ./php56/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
-      - ./hosts:/etc/hosts
-    links:
-      - redis
-      - mysql
-    privileged: true
-#    extra_hosts:
-#      - "affiliate.gearbest.lol:172.24.0.8"
-#      - "affapi.com.trunk.s1cg.egomsl.com:172.24.0.8"
-
   php71:
 #    build: 
 #     context: ./php7
@@ -86,19 +45,19 @@ services:
 #      - "affiliate.gearbest.lol:172.24.0.8"
 #      - "affapi.com.trunk.s1cg.egomsl.com:172.24.0.8"
 
-  php7:
+  php72:
 #    build: 
 #     context: ./php7
-    image: php7:latest
+    image: php72:latest
     #使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
     ports:
       - "9007:9000"
   # 此处实现文件夹代码目录映射
     volumes:
       - ../:/data
-      - ./php7/etc/php/php.ini:/usr/local/etc/php/php.ini
-      - ./php7/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - ./php7/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php72/etc/php/php.ini:/usr/local/etc/php/php.ini
+      - ./php72/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./php72/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./hosts:/etc/hosts
     links:
       - redis
@@ -116,12 +75,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
   # 链接其他docker容器实例
     links:
-      - php54:php54
-      - php56:php56
-      - php7:php7
+      - php72:php72
       - php71:php71
     privileged: true
     ports:
       - "80:80"
-      - "443:443"
-      - "8881-8890:8881-8890"
