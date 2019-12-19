@@ -1,2 +1,4 @@
 /ph*/logs/*.log
 /ph*/log/*.log
+
+.DS_Store

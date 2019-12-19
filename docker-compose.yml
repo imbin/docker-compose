@@ -23,28 +23,6 @@ services:
     ports:
       - "6379:6379"
 
-  php71:
-#    build: 
-#     context: ./php7
-    image: php71:latest
-    #使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以
-    ports:
-      - "9071:9000"
-  # 此处实现文件夹代码目录映射
-    volumes:
-      - ../:/data
-      - ./php71/etc/php/php.ini:/usr/local/etc/php/php.ini
-      - ./php71/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - ./php71/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
-      - ./hosts:/etc/hosts
-    links:
-      - redis
-      - mysql
-    privileged: true
-#    extra_hosts:
-#      - "affiliate.gearbest.lol:172.24.0.8"
-#      - "affapi.com.trunk.s1cg.egomsl.com:172.24.0.8"
-
   php72:
 #    build: 
 #     context: ./php7
@@ -76,7 +54,6 @@ services:
   # 链接其他docker容器实例
     links:
       - php72:php72
-      - php71:php71
     privileged: true
     ports:
       - "80:80"
