@@ -1,4 +1,4 @@
-# docker-compose install php(5.4,5.6,7.1,7.2),nginx,redis,mysql
+# Install php(7.2),nginx,redis,mysql based on docker-compose
 
 # Include
 ```
