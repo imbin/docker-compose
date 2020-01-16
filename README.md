@@ -3,7 +3,7 @@
 # Include
 ```
 Nginx 1.13.0-alpine
-PHP （5.4-fpm, 5.6-fpm.alpine, 7.1-fpm-alpine, 7-fpm-alpine）
+PHP （7.2-fpm-alpine）
 Redis 3.2
 MySQL 5.7
 ```
